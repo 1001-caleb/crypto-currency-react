@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import CoinRow from './CoinRow'
 const TableCoins = () => {
+
     const [coins, setCoins] = useState([]);
+    const [search, setSearch] = useState("");
 
     const getCoins = async () => {
         const response = await fetch('https://api.coingecko.com/api/v3/coins')
@@ -15,8 +17,16 @@ const TableCoins = () => {
         getCoins();
     }, []);
 
+    const searcher = (e) => {
+        setSearch(e.target.value)
+        // console.log(e.target.value);
+    }
+
+    const results = !search ? coins : coins.filter((val) => val.name.toLowerCase().includes(search.toLocaleLowerCase()))
+
     return (
         <div className="App">
+            <input value={search} onChange={searcher} type='text' placeholder='Search...' className='form-control' />
             <table>
                 <thead>
                     <tr>
@@ -29,9 +39,9 @@ const TableCoins = () => {
                 </thead>
                 <tbody>
                     {
-                        coins.map((coin) => {
+                        results.map((result) => {
                             return (
-                                <CoinRow key={coin.id} coin={coin}/>
+                                <CoinRow key={result.id} result={result} />
                             )
                         })
                     }
