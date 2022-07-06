@@ -3,7 +3,7 @@ const CoinRow = ({ result }) => {
     return (
         <tr >
             <td>{result.market_data.market_cap_rank}</td>
-            <td><small><img src={result.image.small} /> {result.name} </small></td>
+            <td className="d-flex flex-column center"><small><img src={result.image.small} /> <p>{result.name} </p></small></td>
             <td>{result.symbol.toUpperCase()}</td>
             <td>{result.market_data.current_price.bmd.toFixed(2)}</td>
             <td>

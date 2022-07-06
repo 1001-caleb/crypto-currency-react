@@ -25,28 +25,34 @@ const TableCoins = () => {
     const results = !search ? coins : coins.filter((val) => val.name.toLowerCase().includes(search.toLocaleLowerCase()))
 
     return (
-        <div className="App">
-            <input value={search} onChange={searcher} type='text' placeholder='Search...' className='form-control' />
-            <table>
-                <thead>
-                    <tr>
-                        <th>Ranking</th>
-                        <th>Name</th>
-                        <th>Symbol</th>
-                        <th>Price</th>
-                        <th>Price 24h</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        results.map((result) => {
-                            return (
-                                <CoinRow key={result.id} result={result} />
-                            )
-                        })
-                    }
-                </tbody>
-            </table>
+        <div className="App bg-dark h-full">
+            <div className='mb-5'>
+                <input value={search} onChange={searcher} type='text' placeholder='Search...' className='form-control-lg ' />
+            </div>
+            
+            <div className='table-responsive'>
+                <table className='table text-white text-center table-sm align-middle'>
+                    <thead className='table-light '>
+                        <tr>
+                            <th>Ranking</th>
+                            <th>Name</th>
+                            <th>Symbol</th>
+                            <th>Price</th>
+                            <th>Price 24h</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            results.map((result) => {
+                                return (
+                                    <CoinRow key={result.id} result={result} />
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     )
 
